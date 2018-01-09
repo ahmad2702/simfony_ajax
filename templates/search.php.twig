@@ -1,0 +1,68 @@
+{% extends "base.php.twig" %}
+
+{% block content %}
+
+    <div class="page-header">
+        <h1 style="text-align: center;">Search</h1>
+    </div>
+
+
+
+    <form action="/go" method="post" class="search">
+        <input type="search" name="name" id="suchField" placeholder="Username..." class="input" />
+        <input type="submit" name="searchUser" value="" class="submit" />
+    </form>
+
+
+
+    <div id="ergebnisse">
+
+    </div>
+
+{#
+    <script>
+        $(document).ready(function () {
+
+            $('#suchField').change(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: '/'
+                });
+            });
+
+
+
+
+
+
+
+        });
+    </script>
+#}
+
+    <script type="text/javascript">
+        $(function(){
+            $("#suchField").keyup(function(){
+                var search = $("#suchField").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/ajax",
+                    data: {"search": search},
+                    cache: false,
+                    success: function(response){
+                        $("#ergebnisse").html(response);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,204 @@
+{% extends "base.php.twig" %}
+
+{% block content %}
+
+  {#
+
+  Um Vozer zu benutzen, bitte zeile 11 ausklammern und dazu noch die zeilen 127-128 miteinander tauschen
+
+  #}
+
+  {#    {% set can_edit = is_granted('edit', user_name) %}            #}
+
+    <div class="page-header">
+        <h1 style="text-align: center;">Profil von: {{ profileName }} </h1>
+    </div>
+
+    {% if profile_error == "no_found" %}
+
+        <div class="noLinesFound">
+            Profil nicht gefunden. <br>
+        </div>
+
+    {% else %}
+
+        {% if (lines|length) == 0 %}
+
+            <div style="width: 100%; height: 50px; color: blue; text-align: center;">
+
+                Anzahl der Lauftage: 0 <br>
+
+                Gesamttage seit dem ersten Lauftag bis heute:
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    0
+                {% else %}
+                    <span style="color: gray;">(nur fur eingeloggte User)</span>
+                {% endif %}
+                <br>
+
+                Gesamte bisher gelaufene Strecke: 0
+
+            </div>
+
+            <div class="noLinesFound">
+                Die Liste ist noch leer. <br>
+            </div>
+
+
+
+        {% else %}
+
+            {% set gesamtStreckee=0 %}
+
+            {% for i in lines %}
+                {% set gesamtStreckee=gesamtStreckee+i.getStrecke() %}
+            {% endfor %}
+
+            <div style="width: 100%; height: 50px; color: blue; text-align: center;">
+
+                Anzahl der Lauftage: {{ anzahl }} <br>
+
+                Gesamttage seit dem ersten Lauftag bis heute:
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {{ ( (now | date('U')) - (first.getDay() | date('U')) )/86400 }}
+                {% else %}
+                    <span style="color: gray;">(nur fur eingeloggte User)</span>
+                {% endif %}
+                <br>
+
+                Gesamte bisher gelaufene Strecke: {{ gesamtStreckee }}
+
+            </div>
+
+
+
+            <div class="trackerLine">
+                <div class="trackerDatum">
+                    <span style="text-transform: uppercase; font-weight: bold;">Datum</span>
+                </div>
+
+                <div class="trackerStrecke">
+                    <span style="text-transform: uppercase; font-weight: bold;">Gelaufene Strecke</span>
+                </div>
+
+                <div class="trackerZeit">
+                    <span style="text-transform: uppercase; font-weight: bold;">Gelaufene Zeit</span>
+                </div>
+
+                <div class="trackerSpeed">
+                    <span style="text-transform: uppercase; font-weight: bold;">geschwindigkeit</span>
+                </div>
+
+                {% if is_granted('IS_AUTHENTICATED_FULLY') and profileName == app.user.username %}
+                    <div class="trackerRemove">
+                        <span style="text-transform: uppercase; font-weight: bold;">eintrag loschen</span>
+                    </div>
+                {% endif %}
+
+            </div>
+
+            {% for i in lines %}
+
+                <div class="trackerLine">
+                    <div class="trackerDatum">
+                        {{ i.getDay() }}
+                    </div>
+
+                    <div class="trackerStrecke">
+                        {{ i.getStrecke() }} km
+                    </div>
+
+                    <div class="trackerZeit">
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            {{ i.getZeit() | round(2, 'floor') }} min
+                        {% else %}
+                            <span style="color: gray;">(nur fur eingeloggte User)</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="trackerSpeed">
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            {{ i.getSpeed() | round(1, 'floor') }} km/h
+                        {% else %}
+                            <span style="color: gray;">(nur fur eingeloggte User)</span>
+                        {% endif %}
+                    </div>
+
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') and profileName == app.user.username %}
+             {#       {% if can_edit %}           mit der obigen Zeile wechseln, um custum-voter zu benutzen  #}
+                        <div class="trackerRemove">
+                            <form method="post" action="{{ path('remove_newData', { name : app.user.username }) }}">
+                                <input type="hidden" value="{{ i.getId() }}" name="id_toRemove">
+
+
+                                        <input type="submit" value="löschen" name="removeForm">
+
+
+                            </form>
+                        </div>
+                    {% endif %}
+
+                </div>
+            {% endfor %}
+
+
+
+        {% endif %}
+
+
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') and profileName == app.user.username %}
+
+            <div class="page-header">
+
+            </div>
+
+            <form class="form-horizontal" action="{{ path('add_newData', { name : app.user.username }) }}" method="post">
+                <fieldset>
+
+                    <!-- Datum-->
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="datum">DATUM:</label>
+                        <div class="col-md-6">
+                            <input id="name" name="datum" type="date" placeholder="JJJJ-MM-TT" class="form-control" value="{{ datum }}">
+                            <span style="color: red;">{{ error_datum }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Strecke-->
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="strecke">STRECKE (km):</label>
+                        <div class="col-md-6">
+                            <input id="email" name="strecke" type="text" placeholder="nn / nn.n" class="form-control" value="{{ strecke }}">
+                            <span style="color: red;">{{ error_strecke }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Zeit-->
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="zeit">ZEIT:</label>
+                        <div class="col-md-6">
+                            <input id="email" name="zeit" type="text" placeholder="hh:mm:ss" class="form-control" value="{{ zeit }}">
+                            <span style="color: red;">{{ error_zeit }}</span>
+                        </div>
+                    </div>
+
+
+                    <!-- Action -->
+                    <div class="form-group">
+                        <div class="col-md-9 text-right">
+                                <input type="submit" class="btn btn-primary btn-lg" name="addForm" value="ADD"></input>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+
+        {% endif %}
+
+    {% endif %}
+
+
+
+
+{% endblock %}

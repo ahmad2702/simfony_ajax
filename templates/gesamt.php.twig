@@ -1,0 +1,70 @@
+{% extends "base.php.twig" %}
+
+{% block content %}
+
+    <div class="page-header">
+        <h1 style="text-align: center;">Laeuferuebersicht</h1>
+    </div>
+
+    {% if (lines|length) == 0 %}
+
+        <div class="noLinesFound">
+            Datenbank ist noch leer. <br>
+        </div>
+
+    {% else %}
+
+
+
+        <div class="trackerLine">
+
+            <div class="trackerDatum1">
+                <br>
+                    <span style="text-transform: uppercase; font-weight: bold;">username</span>
+            </div>
+
+            <div class="trackerStrecke">
+                <span style="text-transform: uppercase; font-weight: bold;">Gesamttage bis heute</span>
+            </div>
+
+            <div class="trackerZeit">
+                <span style="text-transform: uppercase; font-weight: bold;">Gesamte Strecke</span>
+            </div>
+
+        </div>
+
+        {% for user in lines %}
+
+            <div class="trackerLine">
+
+                <div class="trackerDatum1">
+                    <a href="{{ path('profile', { name : user.user }) }}">
+                        <br>
+                        {{ user.user }}
+                    </a>
+                </div>
+
+                <div class="trackerStrecke">
+
+                    {{ user.totalDates }}
+
+                    tage
+                </div>
+
+                <div class="trackerZeit">
+
+                    {{ user.distance }}
+
+                    km
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+
+
+    {% endif %}
+
+
+{% endblock %}
