@@ -77,8 +77,9 @@ class SearchController extends Controller
         }
 
         if (sizeof($user_found_list)!=0){
+            $user_found_list_output = array_slice($user_found_list, 0, 10);
 
-            return ['vorschlag' => $user_found_list, 'error' => ""];
+            return ['vorschlag' => $user_found_list_output, 'error' => ""];
 
 
         }else{

@@ -19,26 +19,7 @@
 
     </div>
 
-{#
-    <script>
-        $(document).ready(function () {
 
-            $('#suchField').change(function () {
-                $.ajax({
-                    type: 'GET',
-                    url: '/'
-                });
-            });
-
-
-
-
-
-
-
-        });
-    </script>
-#}
 
     <script type="text/javascript">
         $(function(){
@@ -55,7 +36,22 @@
                 });
                 return false;
             });
+
+
+
         });
+
+        $(document).ready(function () {
+
+            $(document).on('click', '#userButton', function(){
+                var link = $("#userButton").attr('href','#');
+                var valueFromLink = $("#userButton").text();
+
+                $("#suchField").val(valueFromLink);
+            });
+
+        });
+
     </script>
 
 

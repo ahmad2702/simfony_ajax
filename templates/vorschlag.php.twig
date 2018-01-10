@@ -2,11 +2,11 @@
 
 {% block content %}
 
-
+{#
     <div class="page-header">
         <h1 style="text-align: center;">Suchergebnis</h1>
     </div>
-
+#}
 
     {% if error %}
 
@@ -25,9 +25,9 @@
         {% for user in vorschlag %}
 
             <div class="trackerLine">
-                    <a href="{{ path('profile', { name : user.user }) }}">
-                        {{ user.user }}
-                    </a>
+                <span>
+                    <a id="userButton" href="{{ path('profile', { name : user.user }) }}">{{ user.user }}</a>
+                </span>
             </div>
 
         {% endfor %}
