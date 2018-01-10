@@ -45,6 +45,47 @@ class LoadUserData extends Fixture
         $user4->setPassword($this->encoder->encodePassword($user4, '1111'));
         $manager->persist($user4);
 
+        // Beispile
+        $user5 = new User();
+        $user5->setUsername('peter');
+        $user5->setPassword($this->encoder->encodePassword($user5, '1111'));
+        $manager->persist($user5);
+
+        $user6 = new User();
+        $user6->setUsername('petra');
+        $user6->setPassword($this->encoder->encodePassword($user6, '1111'));
+        $manager->persist($user6);
+
+        $user7 = new User();
+        $user7->setUsername('paul');
+        $user7->setPassword($this->encoder->encodePassword($user7, '1111'));
+        $manager->persist($user7);
+
+        $user8 = new User();
+        $user8->setUsername('maria');
+        $user8->setPassword($this->encoder->encodePassword($user8, '1111'));
+        $manager->persist($user8);
+
+        $user9 = new User();
+        $user9->setUsername('jakob');
+        $user9->setPassword($this->encoder->encodePassword($user9, '1111'));
+        $manager->persist($user9);
+
+        $user10 = new User();
+        $user10->setUsername('claude');
+        $user10->setPassword($this->encoder->encodePassword($user10, '1111'));
+        $manager->persist($user10);
+
+        $user11 = new User();
+        $user11->setUsername('klaus');
+        $user11->setPassword($this->encoder->encodePassword($user11, '1111'));
+        $manager->persist($user11);
+
+        $user12 = new User();
+        $user12->setUsername('marta');
+        $user12->setPassword($this->encoder->encodePassword($user12, '1111'));
+        $manager->persist($user12);
+
 
 /**
         // user data

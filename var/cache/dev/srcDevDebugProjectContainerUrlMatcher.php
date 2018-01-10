@@ -62,7 +62,7 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
 
             // get
-            if (0 === strpos($pathinfo, '/search-') && preg_match('#^/search\\-(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            if (0 === strpos($pathinfo, '/search=') && preg_match('#^/search\\=(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'get')), array (  '_controller' => 'App\\Controller\\SearchController::searchGet',));
             }
 

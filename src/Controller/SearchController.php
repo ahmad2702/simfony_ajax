@@ -44,7 +44,7 @@ class SearchController extends Controller
 
 
     /**
-     * @Route("/search-{name}", name="get")
+     * @Route("/search={name}", name="get")
      * @Template("vorschlag.php.twig")
      */
     public function searchGet(EntityManagerInterface $doctrine, $name) {
@@ -106,7 +106,7 @@ class SearchController extends Controller
         //return ['message' => "Funktioniert!"];
         $request_user = $request->get('search');
 
-        return $this->redirect("/search-".$request_user);
+        return $this->redirect("/search=".$request_user);
     }
 
 
