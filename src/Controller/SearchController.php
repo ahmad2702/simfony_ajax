@@ -31,7 +31,7 @@ class SearchController extends Controller
     public function searchStart(EntityManagerInterface $doctrine, Request $request) {
         $request_user = $request->get('name');
 
-        $find_user = $doctrine->getRepository('App:User')->findBy(['username' => $request_user]);
+        $find_user = $doctrine->getRepository('App:User')->findBy(['username' => strtolower($request_user)]);
 
         if (sizeof($find_user)!=0){
             return $this->redirect("/profile-".$request_user);
@@ -49,7 +49,7 @@ class SearchController extends Controller
      */
     public function searchGet(EntityManagerInterface $doctrine, $name) {
         $name = preg_replace ( '/[^a-z0-9 ]/i', '', $name );
-
+        $name = strtolower($name);
 
         if(strlen($name)<3){
             return [
