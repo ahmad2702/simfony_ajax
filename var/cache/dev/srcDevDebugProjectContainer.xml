@@ -321,6 +321,9 @@
     <service id="App\Controller\EditController" class="App\Controller\EditController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
+    <service id="App\Controller\ExportController" class="App\Controller\ExportController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+    </service>
     <service id="App\Controller\ProfileController" class="App\Controller\ProfileController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
@@ -357,7 +360,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-50"/>
-      <argument type="service" id="service_locator.6EFSjQQ"/>
+      <argument type="service" id="service_locator.EJFe_3V"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-100"/>
@@ -3546,6 +3549,8 @@
     <service id="abstract.instanceof.App\Controller\DefaultController" class="App\Controller\DefaultController" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.App\Controller\EditController" class="App\Controller\EditController" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.App\Controller\EditController" class="App\Controller\EditController" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.App\Controller\ExportController" class="App\Controller\ExportController" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.App\Controller\ExportController" class="App\Controller\ExportController" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.App\Controller\ProfileController" class="App\Controller\ProfileController" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.App\Controller\ProfileController" class="App\Controller\ProfileController" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.App\Controller\SearchController" class="App\Controller\SearchController" public="false" autowire="true" abstract="true"/>
@@ -3569,6 +3574,12 @@
       <argument type="collection">
         <argument key="doctrine" type="service" id="doctrine.orm.default_entity_manager" on-invalid="ignore"/>
         <argument key="manager" type="service" id="doctrine.orm.default_entity_manager" on-invalid="ignore"/>
+      </argument>
+    </service>
+    <service id="service_locator.s_EBRhh" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="doctrine" type="service" id="doctrine.orm.default_entity_manager" on-invalid="ignore"/>
       </argument>
     </service>
     <service id="service_locator.RDnvng_" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -3599,12 +3610,13 @@
         <argument key="authenticationUtils" type="service" id="security.authentication_utils" on-invalid="ignore"/>
       </argument>
     </service>
-    <service id="service_locator.6EFSjQQ" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.EJFe_3V" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\DefaultController:index" type="service" id="service_locator.OXGnpIQ"/>
         <argument key="App\Controller\EditController:add" type="service" id="service_locator.owxV3CI"/>
         <argument key="App\Controller\EditController:remove" type="service" id="service_locator.owxV3CI"/>
+        <argument key="App\Controller\ExportController:exportAllAsJson" type="service" id="service_locator.s_EBRhh"/>
         <argument key="App\Controller\ProfileController:profile" type="service" id="service_locator.RDnvng_"/>
         <argument key="App\Controller\SearchController:searchGet" type="service" id="service_locator.i4JlS42"/>
         <argument key="App\Controller\SearchController:searchStart" type="service" id="service_locator.rkxwIHu"/>
@@ -3612,6 +3624,7 @@
         <argument key="App\Controller\DefaultController::index" type="service" id="service_locator.OXGnpIQ"/>
         <argument key="App\Controller\EditController::add" type="service" id="service_locator.owxV3CI"/>
         <argument key="App\Controller\EditController::remove" type="service" id="service_locator.owxV3CI"/>
+        <argument key="App\Controller\ExportController::exportAllAsJson" type="service" id="service_locator.s_EBRhh"/>
         <argument key="App\Controller\ProfileController::profile" type="service" id="service_locator.RDnvng_"/>
         <argument key="App\Controller\SearchController::searchGet" type="service" id="service_locator.i4JlS42"/>
         <argument key="App\Controller\SearchController::searchStart" type="service" id="service_locator.rkxwIHu"/>

@@ -55,6 +55,16 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'remove_newData')), array (  '_controller' => 'App\\Controller\\EditController::remove',));
         }
 
+        // all_data
+        if ('/all/gesamtUebersicht' === $pathinfo) {
+            return array (  '_controller' => 'App\\Controller\\ExportController::exportAllAsJson',  '_route' => 'all_data',);
+        }
+
+        // ajax_search
+        if ('/ajax' === $pathinfo) {
+            return array (  '_controller' => 'App\\Controller\\SearchController::ajaxSearch',  '_route' => 'ajax_search',);
+        }
+
         if (0 === strpos($pathinfo, '/search')) {
             // search_user
             if ('/search' === $pathinfo) {
@@ -76,11 +86,6 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         // not_found
         if ('/404' === $pathinfo) {
             return array (  '_controller' => 'App\\Controller\\SearchController::notFound',  '_route' => 'not_found',);
-        }
-
-        // ajax_search
-        if ('/ajax' === $pathinfo) {
-            return array (  '_controller' => 'App\\Controller\\SearchController::ajaxSearch',  '_route' => 'ajax_search',);
         }
 
         // security_login
