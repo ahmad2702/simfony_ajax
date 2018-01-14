@@ -37,6 +37,7 @@ class ComposerStaticInitc78f41922e17597de2b5c02d823120f1
             'Symfony\\Component\\Security\\' => 27,
             'Symfony\\Component\\Routing\\' => 26,
             'Symfony\\Component\\PropertyAccess\\' => 33,
+            'Symfony\\Component\\Process\\' => 26,
             'Symfony\\Component\\OptionsResolver\\' => 34,
             'Symfony\\Component\\Intl\\' => 23,
             'Symfony\\Component\\Inflector\\' => 28,
@@ -53,9 +54,11 @@ class ComposerStaticInitc78f41922e17597de2b5c02d823120f1
             'Symfony\\Component\\Config\\' => 25,
             'Symfony\\Component\\Cache\\' => 24,
             'Symfony\\Component\\Asset\\' => 24,
+            'Symfony\\Bundle\\WebServerBundle\\' => 31,
             'Symfony\\Bundle\\WebProfilerBundle\\' => 33,
             'Symfony\\Bundle\\TwigBundle\\' => 26,
             'Symfony\\Bundle\\SecurityBundle\\' => 30,
+            'Symfony\\Bundle\\MakerBundle\\' => 27,
             'Symfony\\Bundle\\FrameworkBundle\\' => 31,
             'Symfony\\Bridge\\Twig\\' => 20,
             'Symfony\\Bridge\\Doctrine\\' => 24,
@@ -152,6 +155,10 @@ class ComposerStaticInitc78f41922e17597de2b5c02d823120f1
         array (
             0 => __DIR__ . '/..' . '/symfony/property-access',
         ),
+        'Symfony\\Component\\Process\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/process',
+        ),
         'Symfony\\Component\\OptionsResolver\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/options-resolver',
@@ -216,6 +223,10 @@ class ComposerStaticInitc78f41922e17597de2b5c02d823120f1
         array (
             0 => __DIR__ . '/..' . '/symfony/asset',
         ),
+        'Symfony\\Bundle\\WebServerBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/web-server-bundle',
+        ),
         'Symfony\\Bundle\\WebProfilerBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/web-profiler-bundle',
@@ -227,6 +238,10 @@ class ComposerStaticInitc78f41922e17597de2b5c02d823120f1
         'Symfony\\Bundle\\SecurityBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/security-bundle',
+        ),
+        'Symfony\\Bundle\\MakerBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/maker-bundle/src',
         ),
         'Symfony\\Bundle\\FrameworkBundle\\' => 
         array (

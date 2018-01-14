@@ -55,14 +55,9 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'remove_newData')), array (  '_controller' => 'App\\Controller\\EditController::remove',));
         }
 
-        // all_data
-        if ('/all/gesamtUebersicht' === $pathinfo) {
-            return array (  '_controller' => 'App\\Controller\\ExportController::exportAllAsJson',  '_route' => 'all_data',);
-        }
-
-        // ajax_search
-        if ('/ajax' === $pathinfo) {
-            return array (  '_controller' => 'App\\Controller\\SearchController::ajaxSearch',  '_route' => 'ajax_search',);
+        // app_export_exportasfile
+        if (0 === strpos($pathinfo, '/export') && preg_match('#^/export/(?P<username>[^/]++)/(?P<fileName>[^/\\.]++)(?:\\.(?P<_format>json|csv))?$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'app_export_exportasfile')), array (  '_format' => 'json',  '_controller' => 'App\\Controller\\ExportController::exportAsFile',));
         }
 
         if (0 === strpos($pathinfo, '/search')) {
@@ -86,6 +81,11 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         // not_found
         if ('/404' === $pathinfo) {
             return array (  '_controller' => 'App\\Controller\\SearchController::notFound',  '_route' => 'not_found',);
+        }
+
+        // ajax_search
+        if ('/ajax' === $pathinfo) {
+            return array (  '_controller' => 'App\\Controller\\SearchController::ajaxSearch',  '_route' => 'ajax_search',);
         }
 
         // security_login

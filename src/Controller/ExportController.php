@@ -17,44 +17,46 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
+
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use PDO;
+
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
+
+
 class ExportController extends Controller
 {
 
     /**
-     * @Route("/all/gesamtUebersicht", name="all_data")
-     * @Template("search.php.twig")
+     * @Route("/export/{username}/{fileName}.{_format}", defaults={"_format": "json"}, requirements={"_format": "json|csv"})
      */
-    public function exportAllAsJson(EntityManagerInterface $doctrine) {
+    public function exportAsFile(User $user, EntityManagerInterface $doctrine, $username, $fileName,$_format) {
 
-        $entries = array();
-        $em = $this->getDoctrine()->getManager();
-
-        $users = $em->getRepository('App\Entity\User')->findAll();
-
-        foreach ($users as $user) {
-            $allUserEntries = $em->getRepository('App\Entity\TrackerLine')
-                ->findBy(['username' =>$user->getUsername()]);
-
-            $distance = 0;
-            foreach ($allUserEntries as $entry) {
-                $distance += $entry->getStrecke();
-            }
-            $totalDates = count($allUserEntries);
-
-            array_push($entries,array(
-                'user' => $user->getUsername(),
-                'distance' => $distance,
-                'totalDates' => $totalDates));
-        }
+        $data=[];
 
 
-        $response = new Response();
-        $response->setContent(json_encode(array(
-            'data_gesamtUebersich' => $entries,
-        )));
-        $response->headers->set('Content-Type', 'application/json');
+        $conn = $this->get('database_connection');
+        $stmt =  $conn->prepare("select * from tracker_line WHERE username =:domain_name" );
+        $stmt->bindValue(':domain_name', $username);
+        $stmt->execute();
+        $data['form'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return $response;
+
+
+            $response = new Response();
+            $response->setContent(json_encode( $data['form'], JSON_PRETTY_PRINT ));
+            $response->headers->set('Content-Type', 'application/json');
+
+            $this->generateUrl('blog_show', array('slug' => 'my-blog-post'), UrlGeneratorInterface::ABSOLUTE_URL);
+            return $response;
+
+
+
     }
 
 
