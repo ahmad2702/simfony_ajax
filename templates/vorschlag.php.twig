@@ -8,10 +8,10 @@
     </div>
 #}
 
-    {% if error %}
+    {% if json_to_list('error') %}
 
     <div class="noLinesFound">
-        {{ error }} <br>
+        {{ json_to_list('error') }} <br>
     </div>
 
     {% endif %}
@@ -20,9 +20,9 @@
 
 
 
-    {% if vorschlag %}
+    {% if json_to_list('vorschlag') %}
 
-        {% for user in vorschlag %}
+        {% for user in json_to_list('vorschlag') %}
 
             <div class="trackerLine">
                 <span>

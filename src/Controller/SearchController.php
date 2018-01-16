@@ -7,6 +7,7 @@ use App\Entity\TrackerLine;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -46,8 +47,8 @@ class SearchController extends Controller
 
 
     /**
-     * @Route("/search={name}", name="get")
-     * @Template("vorschlag.php.twig")
+     * @Route("/search/{name}", name="get")
+     *
      */
     public function searchGet(EntityManagerInterface $doctrine, $name) {
         // GET
@@ -56,10 +57,9 @@ class SearchController extends Controller
         $name = strtolower($name);
 
         if(strlen($name)<3){
-            return [
-                'vorschlag' => "",
-                'error' => "Suchanfragen werden nur für Eingaben mit mindestens 3 Zeichen gestartet!"
-            ];
+            return new Response(json_encode(array(
+
+            )));
         }
 
 
@@ -83,12 +83,16 @@ class SearchController extends Controller
         if (sizeof($user_found_list)!=0){
             $user_found_list_output = array_slice($user_found_list, 0, 10);
 
-            return ['vorschlag' => $user_found_list_output, 'error' => ""];
+            return new Response(json_encode(array(
+                $user_found_list_output
+            )));
 
 
         }else{
 
-            return ['vorschlag' => "", 'error' => "Nix gefunden!"];
+            return new Response(json_encode(array(
+
+            )));
 
         }
 
@@ -110,7 +114,7 @@ class SearchController extends Controller
         //return ['message' => "Funktioniert!"];
         $request_user = $request->get('search');
 
-        return $this->redirect("/search=".$request_user);
+        return $this->redirect("/search/".$request_user);
     }
 
 

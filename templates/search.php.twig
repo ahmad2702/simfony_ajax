@@ -31,7 +31,17 @@
                     data: {"search": search},
                     cache: false,
                     success: function(response){
-                        $("#ergebnisse").html(response);
+                        var names = JSON.parse(response);
+
+                        var text = "";
+
+                        if(names.length !=0 && names[0].length != 0){
+                            for(i=0; i < names[0].length; i++){
+                                text += '<a id="userButton" href="#">'+names[0][i].user+'</a><br>';
+                            }
+                        }
+
+                        $("#ergebnisse").html(text);
                     }
                 });
                 return false;
