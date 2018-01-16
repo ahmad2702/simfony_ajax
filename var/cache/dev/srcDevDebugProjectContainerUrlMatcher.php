@@ -56,8 +56,8 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
 
         // app_export_exportasfile
-        if (0 === strpos($pathinfo, '/export') && preg_match('#^/export/(?P<username>[^/]++)/(?P<fileName>[^/\\.]++)(?:\\.(?P<_format>json|csv))?$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'app_export_exportasfile')), array (  '_format' => 'json',  '_controller' => 'App\\Controller\\ExportController::exportAsFile',));
+        if (0 === strpos($pathinfo, '/export') && preg_match('#^/export/(?P<username>[^/]++)/(?P<fileName>[^/\\.]++)\\.(?P<_format>json|csv)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'app_export_exportasfile')), array (  '_controller' => 'App\\Controller\\ExportController::exportAsFile',));
         }
 
         if (0 === strpos($pathinfo, '/search')) {

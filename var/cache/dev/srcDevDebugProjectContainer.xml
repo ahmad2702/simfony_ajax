@@ -370,7 +370,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-50"/>
-      <argument type="service" id="service_locator.PcRCHYq"/>
+      <argument type="service" id="service_locator.TdZo_SB"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-100"/>
@@ -1795,14 +1795,6 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
-        <argument>console.command</argument>
-        <argument type="collection">
-          <argument type="service" id="debug.debug_handlers_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>2048</argument>
-      </call>
-      <call method="addListener">
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument type="service" id="router_listener"/>
@@ -2028,7 +2020,7 @@
         <argument key="matcher_base_class">Symfony\Bundle\FrameworkBundle\Routing\RedirectableUrlMatcher</argument>
         <argument key="matcher_dumper_class">Symfony\Component\Routing\Matcher\Dumper\PhpMatcherDumper</argument>
         <argument key="matcher_cache_class">srcDevDebugProjectContainerUrlMatcher</argument>
-        <argument key="strict_requirements">null</argument>
+        <argument key="strict_requirements">true</argument>
         <argument key="resource_type">service</argument>
       </argument>
       <argument type="service" id="router.request_context" on-invalid="ignore"/>
@@ -3793,7 +3785,7 @@
         <argument key="manager" type="service" id="doctrine.orm.default_entity_manager" on-invalid="ignore"/>
       </argument>
     </service>
-    <service id="service_locator.BmndFdm" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.AZl4lBC" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="doctrine" type="service" id="doctrine.orm.default_entity_manager" on-invalid="ignore"/>
@@ -3827,13 +3819,13 @@
         <argument key="authenticationUtils" type="service" id="security.authentication_utils" on-invalid="ignore"/>
       </argument>
     </service>
-    <service id="service_locator.PcRCHYq" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.TdZo_SB" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\DefaultController:index" type="service" id="service_locator.OXGnpIQ"/>
         <argument key="App\Controller\EditController:add" type="service" id="service_locator.owxV3CI"/>
         <argument key="App\Controller\EditController:remove" type="service" id="service_locator.owxV3CI"/>
-        <argument key="App\Controller\ExportController:exportAsFile" type="service" id="service_locator.BmndFdm"/>
+        <argument key="App\Controller\ExportController:exportAsFile" type="service" id="service_locator.AZl4lBC"/>
         <argument key="App\Controller\ProfileController:profile" type="service" id="service_locator.RDnvng_"/>
         <argument key="App\Controller\SearchController:searchGet" type="service" id="service_locator.i4JlS42"/>
         <argument key="App\Controller\SearchController:searchStart" type="service" id="service_locator.rkxwIHu"/>
@@ -3841,7 +3833,7 @@
         <argument key="App\Controller\DefaultController::index" type="service" id="service_locator.OXGnpIQ"/>
         <argument key="App\Controller\EditController::add" type="service" id="service_locator.owxV3CI"/>
         <argument key="App\Controller\EditController::remove" type="service" id="service_locator.owxV3CI"/>
-        <argument key="App\Controller\ExportController::exportAsFile" type="service" id="service_locator.BmndFdm"/>
+        <argument key="App\Controller\ExportController::exportAsFile" type="service" id="service_locator.AZl4lBC"/>
         <argument key="App\Controller\ProfileController::profile" type="service" id="service_locator.RDnvng_"/>
         <argument key="App\Controller\SearchController::searchGet" type="service" id="service_locator.i4JlS42"/>
         <argument key="App\Controller\SearchController::searchStart" type="service" id="service_locator.rkxwIHu"/>

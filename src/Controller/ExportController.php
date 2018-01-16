@@ -24,6 +24,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use PDO;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -33,9 +34,10 @@ class ExportController extends Controller
 {
 
     /**
-     * @Route("/export/{username}/{fileName}.{_format}", defaults={"_format": "json"}, requirements={"_format": "json|csv"})
+     * @Route("/export/{username}/{fileName}.{_format}", requirements={"_format": "json|csv"})
+     * @IsGranted("ROLE_USER")
      */
-    public function exportAsFile(User $user, EntityManagerInterface $doctrine, $username, $fileName,$_format) {
+    public function exportAsFile(User $user, Request $request, EntityManagerInterface $doctrine, $username, $fileName,$_format) {
 
         $data=[];
 
@@ -46,15 +48,35 @@ class ExportController extends Controller
         $stmt->execute();
         $data['form'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
-
+        if ($_format==="json"){
             $response = new Response();
             $response->setContent(json_encode( $data['form'], JSON_PRETTY_PRINT ));
             $response->headers->set('Content-Type', 'application/json');
 
-            $this->generateUrl('blog_show', array('slug' => 'my-blog-post'), UrlGeneratorInterface::ABSOLUTE_URL);
+            return $response;
+        }elseif ($_format==="csv"){
+
+            $output = fopen("diary.csv","w");
+
+
+            foreach (  $data['form'] as $file) {
+                $result = [];
+                array_walk_recursive($file, function($item) use (&$result) {
+                    $result[] = $item;
+                });
+                fputcsv($output, $result);
+            }
+
+            $response = new BinaryFileResponse("diary.csv");
+            $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT);
+
             return $response;
 
+
+        }
+
+
+        return $this->redirect('/404');
 
 
     }

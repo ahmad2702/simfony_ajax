@@ -29,6 +29,8 @@ class SearchController extends Controller
      * @Route("/go", name="go")
      */
     public function searchStart(EntityManagerInterface $doctrine, Request $request) {
+        // POST
+
         $request_user = $request->get('name');
 
         $find_user = $doctrine->getRepository('App:User')->findBy(['username' => strtolower($request_user)]);
@@ -48,6 +50,8 @@ class SearchController extends Controller
      * @Template("vorschlag.php.twig")
      */
     public function searchGet(EntityManagerInterface $doctrine, $name) {
+        // GET
+
         $name = preg_replace ( '/[^a-z0-9 ]/i', '', $name );
         $name = strtolower($name);
 
