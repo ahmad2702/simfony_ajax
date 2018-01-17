@@ -37,7 +37,8 @@
 
                         if(names.length !=0 && names[0].length != 0){
                             for(i=0; i < names[0].length; i++){
-                                text += '<a id="userButton" href="#">'+names[0][i].user+'</a><br>';
+                                var name = names[0][i].user;
+                                text += '<a id="userButton" href="#">'+name+'</a><br>';
                             }
                         }
 
@@ -54,9 +55,7 @@
         $(document).ready(function () {
 
             $(document).on('click', '#userButton', function(){
-                var link = $("#userButton").attr('href','#');
-                var valueFromLink = $("#userButton").text();
-
+                var valueFromLink = $(this).text();
                 $("#suchField").val(valueFromLink);
             });
 
