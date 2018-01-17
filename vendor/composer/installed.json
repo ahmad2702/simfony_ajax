@@ -1879,51 +1879,6 @@
         "description": "A pack for the Symfony web profiler"
     },
     {
-        "name": "symfony/thanks",
-        "version": "v1.0.1",
-        "version_normalized": "1.0.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/thanks.git",
-            "reference": "b637913a92664571afd1067fc645ecb30c9cf5b2"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/symfony/thanks/zipball/b637913a92664571afd1067fc645ecb30c9cf5b2",
-            "reference": "b637913a92664571afd1067fc645ecb30c9cf5b2",
-            "shasum": ""
-        },
-        "require": {
-            "composer-plugin-api": "^1.1",
-            "php": "^5.5.9|^7.0.8"
-        },
-        "time": "2018-01-03T09:30:52+00:00",
-        "type": "composer-plugin",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0-dev"
-            },
-            "class": "Symfony\\Thanks\\Thanks"
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Symfony\\Thanks\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Nicolas Grekas",
-                "email": "p@tchwork.com"
-            }
-        ],
-        "description": "Give thanks (in the form of a GitHub ⭐) to your fellow PHP package maintainers (not limited to Symfony components)!"
-    },
-    {
         "name": "symfony/asset",
         "version": "v4.0.3",
         "version_normalized": "4.0.3.0",
@@ -4039,54 +3994,6 @@
         "homepage": "https://symfony.com"
     },
     {
-        "name": "symfony/flex",
-        "version": "v1.0.61",
-        "version_normalized": "1.0.61.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/flex.git",
-            "reference": "f872f8faccf5ff95678e1e428f460a333ba1e5d0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/symfony/flex/zipball/f872f8faccf5ff95678e1e428f460a333ba1e5d0",
-            "reference": "f872f8faccf5ff95678e1e428f460a333ba1e5d0",
-            "shasum": ""
-        },
-        "require": {
-            "composer-plugin-api": "^1.1",
-            "php": "^7.0"
-        },
-        "require-dev": {
-            "composer/composer": "^1.4",
-            "symfony/phpunit-bridge": "^3.2.8"
-        },
-        "time": "2018-01-12T13:09:44+00:00",
-        "type": "composer-plugin",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0-dev"
-            },
-            "class": "Symfony\\Flex\\Flex"
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Symfony\\Flex\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien.potencier@gmail.com"
-            }
-        ]
-    },
-    {
         "name": "doctrine/inflector",
         "version": "v1.3.0",
         "version_normalized": "1.3.0.0",
@@ -4395,5 +4302,98 @@
         ],
         "description": "Symfony WebServerBundle",
         "homepage": "https://symfony.com"
+    },
+    {
+        "name": "symfony/flex",
+        "version": "v1.0.62",
+        "version_normalized": "1.0.62.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/flex.git",
+            "reference": "c233143ef550f6acbe033fe63d15dad15ca8566a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/flex/zipball/c233143ef550f6acbe033fe63d15dad15ca8566a",
+            "reference": "c233143ef550f6acbe033fe63d15dad15ca8566a",
+            "shasum": ""
+        },
+        "require": {
+            "composer-plugin-api": "^1.1",
+            "php": "^7.0"
+        },
+        "require-dev": {
+            "composer/composer": "^1.4",
+            "symfony/phpunit-bridge": "^3.2.8"
+        },
+        "time": "2018-01-17T07:28:24+00:00",
+        "type": "composer-plugin",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            },
+            "class": "Symfony\\Flex\\Flex"
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Flex\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien.potencier@gmail.com"
+            }
+        ]
+    },
+    {
+        "name": "symfony/thanks",
+        "version": "v1.0.2",
+        "version_normalized": "1.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/thanks.git",
+            "reference": "0621e9e403cbae531165c98c99f05221bf3b9dba"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/thanks/zipball/0621e9e403cbae531165c98c99f05221bf3b9dba",
+            "reference": "0621e9e403cbae531165c98c99f05221bf3b9dba",
+            "shasum": ""
+        },
+        "require": {
+            "composer-plugin-api": "^1.1",
+            "php": "^5.5.9|^7.0.0"
+        },
+        "time": "2018-01-10T15:41:47+00:00",
+        "type": "composer-plugin",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            },
+            "class": "Symfony\\Thanks\\Thanks"
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Thanks\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Nicolas Grekas",
+                "email": "p@tchwork.com"
+            }
+        ],
+        "description": "Give thanks (in the form of a GitHub ⭐) to your fellow PHP package maintainers (not limited to Symfony components)!"
     }
 ]
